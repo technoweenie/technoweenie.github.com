@@ -9,7 +9,7 @@ title: Home
   links.
 </p>
 
-{% for post in site.posts limit:3 %}
+{% for post in paginator.posts %}
 <div class="article">
   <h2 class="title"><a href="{{ post.url }}">{{ post.title }}</a></h2>
   <div class="clear">
@@ -20,15 +20,3 @@ title: Home
   </p>
 </div>
 {% endfor %}
-
-<div id="previously">
-  <h3>previously</h3>
-  <ul>
-  {% for post in site.posts offset: 3, limit:12 %}
-    <li>
-      <small>{{ post.date | date: "%Y %b %d" }}</small>
-      <a href="{{ post.url }}">{{ post.title }}</a>
-    </li>
-  {% endfor %}
-  </ul>
-</div>
