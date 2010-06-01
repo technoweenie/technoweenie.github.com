@@ -9,6 +9,9 @@ title: Home
   <div class="clear">
 {{ post.content }}
   </div>
+  <p class="meta">
+    posted {{ post.date | date: "%Y %b %d" }}
+  </p>
 </div>
 {% endfor %}
 

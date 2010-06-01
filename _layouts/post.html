@@ -1,7 +1,14 @@
 {% include head.html %}
 
 <div id="content" class="span-18">
-  {{ post.content }}
+  <h2 class="title">{{ page.title }}</h2>
+  <div class="clear">
+{{ content }}
+  </div>
+  <p class="meta">
+    posted {{ page.date | date: "%Y %b %d" }}
+  </p>
+  {% include previously.html %}
 </div>
 
 {% include footer.html %}
