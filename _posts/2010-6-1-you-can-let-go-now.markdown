@@ -1,7 +1,7 @@
 --- 
 layout: post
 title: You can let go now
-published: false
+published: true
 ---
 
 If you're reading this, I've completed migrating my blog from [Mephisto](http://github.com/technoweenie/mephisto)
