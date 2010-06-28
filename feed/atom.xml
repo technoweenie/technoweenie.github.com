@@ -1,0 +1,26 @@
+---
+layout: nil
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xml:lang="en-US" xmlns="http://www.w3.org/2005/Atom">
+  <title>techno weenie</title>
+  <id>tag:techno-weenie.net,2010:mephisto/</id>
+  <generator uri="http://github.com/mojombo/jekyll" version="0.6.2">Jekyll</generator>
+  <link href="http://techno-weenie.net/feed/atom.xml" rel="self" type="application/atom+xml"/>
+  <link href="http://techno-weenie.net/" rel="alternate" type="text/html"/>
+  <updated>{{ site.time | date_to_xml_schema }}</updated>
+{% for post in site.posts limit:15 %}
+  <entry xml:base="http://techno-weenie.net/">
+    <author>
+      <name>rick</name>
+    </author>
+    <id>tag:techno-weenie.net,{{post.id}}</id>
+    <published>{{ post.date | date_to_xmlschema }}</published>
+    <link href="{{ post.url }}" rel="alternate" type="text/html"/>
+    <title>{{ post.title | xml_escape }}</title>
+<content type="html">
+{{ post.content | xml_escape }}
+</content>
+  </entry>
+{% endfor %}
+</feed>
