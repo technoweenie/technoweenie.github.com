@@ -14,7 +14,7 @@ layout: nil
     <author>
       <name>rick</name>
     </author>
-    <id>tag:techno-weenie.net,{{post.id | replace: '/', ':'}}</id>
+    <id>tag:techno-weenie.net{{post.id | replace_first: '/', ',' | replace: '/', ':'}}</id>
     <published>{{ post.date | date_to_xmlschema }}</published>
     <updated>{{ post.date | date_to_xmlschema }}</updated>
     <link href="{{ post.url }}" rel="alternate" type="text/html"/>
