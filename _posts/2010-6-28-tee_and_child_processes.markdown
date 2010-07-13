@@ -3,7 +3,7 @@ layout: post
 title: Tee and Child Processes
 ---
 
-My first node.js project at GitHub is a replacement download server.  I wanted to remove the extra moving pieces required to get it to work.  One of the steps involves writing a file from the output of `git archive`.  My initial attempt looked like this:
+My first node.js project at GitHub is a [replacement download server](http://github.com/blog/678-meet-nodeload-the-new-download-server).  I wanted to remove the extra moving pieces required to get it to work.  One of the steps involves writing a file from the output of `git archive`.  My initial attempt looked like this:
 
 {% highlight coffeescript %}
 fs:      require('fs')
