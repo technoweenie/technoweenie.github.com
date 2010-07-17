@@ -3,7 +3,7 @@ layout: post
 title: In-Process Node.js Queues
 ---
 
-Node.js is great at handling lots of asynchronous connections, but sometimes I'd like a limit to how many are in use.  One real world example is some kind of spider or feed reader.  If you have a list of 500 addresses to fetch, you don't want to fetch them all at once.  Maybe they're all on one server, or the requests return large files that need some post processing.
+Node.js is great at handling lots of asynchronous connections, but sometimes I'd like to limit how many are in use.  One real world example is some kind of spider or feed reader.  If you have a list of 500 addresses to fetch, you don't want to fetch them all at once.  Maybe they're all on one server, or the requests return large files that need some post processing.
 
 A simple queue like Resque is great for this, but I wanted something even simpler.  Something that lived in the Node.js process, and could exit cleanly without any of that persistent mess left over.  
 
@@ -51,3 +51,5 @@ There are two interesting behaviors that are possible now: Duplicate jobs are no
 * [webserver.coffee](/code/2010/7/chain-gang-sample/webserver.coffee) is a silly web server that waits for a specified amount of time before returning a request.  A URL like "/3/foo" will return in 3 seconds, for example.
 * [chain-with-dupes.coffee](/code/2010/7/chain-gang-sample/chain-with-dupes.coffee) shows what happens when multiple jobs with the same name are queued.  In this contrived example, only the first, longer one is completed.  The rest are ignored.
 * [chain-with-uniques.coffee](/code/2010/7/chain-gang-sample/chain-with-uniques.coffee) shows how Chain Gang handles more jobs than workers.  They just sit in an array until a free worker can take it.
+
+On a side note, this is my first lib using [npm](http://npmjs.org/) (Node.js package manager).  Type `npm install chain-gang` to get rockin'.
