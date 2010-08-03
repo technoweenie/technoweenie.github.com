@@ -1,18 +1,15 @@
 --- 
 layout: post
 title: Protocol Buffers with Riak for Node.js
-published: false
 ---
 
 I've been playing around with [Riak](https://wiki.basho.com/display/RIAK/The+Riak+Fast+Track) a bit lately.  It's a simple key/value store with S3-style buckets and one-way links between keys.  It also has clustering built in, and lets you run map/reduce against a set of data pretty easily.  All this, over a simple HTTP API.  
 
-It's a great way to start playing with Riak, but I found it to be pretty slow.  With Riak, there are two more options: use the Erlang client, or write a Protocol Buffer adapter.  I'd never done anything with Protocol Buffers, so I figured this was good opportunity.  
-
-I'm not going to get into the why's of [Protocol Buffers](http://code.google.com/p/protobuf/).  They're just a binary data encoding with a fixed schema.  The Node.js adapter claims a 20-50% speed improvement over JSON.
+It's a great way to start playing with Riak, but I found it to be pretty slow.  With Riak, there are two more options: use the Erlang client, or write a Protocol Buffer adapter.  I'd never done anything with [Protocol Buffers](http://code.google.com/p/protobuf/), so I figured this was good opportunity.  
 
 ## Riak PBC Client
 
-Armed with [Node.js Protocol Buffer](http://code.google.com/p/protobuf-for-node/) serializing and parsing abilities, I took a look at the [Riak PBC API](https://wiki.basho.com/display/RIAK/PBC+API).  It's a very simple API:
+Armed with [Node.js Protocol Buffer](http://code.google.com/p/protobuf-for-node/) serializing and parsing abilities, I took a look at the [Riak PBC API](https://wiki.basho.com/display/RIAK/PBC+API).  It has a very simple API:
 
     00 00 00 07 09 0A 01 62 12 01 6B
     |----Len---|MC|----Message-----|
@@ -75,7 +72,7 @@ conn.on 'data', (chunk) ->
 
 ## Pooling Connections
 
-My [initial example](http://gist.github.com/488488#file_riak.coffee) started off pretty basic, but started to grow out of control.  I quickly realized that since the socket API was very synchronous, I needed to implement a connection pool so a Node.js process could have simultaneous conversations with Riak.  A basic example might look like this:
+My [initial example](http://gist.github.com/488488#file_riak.coffee) started off pretty basic, but started to grow out of control.  I quickly realized that since the socket API was very synchronous, I needed to implement a connection pool so a Node.js process could have simultaneous conversations with Riak.  A basic example looks like this:
 
 {% highlight coffeescript %}
 riak = new (require './protobuf')()
@@ -103,11 +100,11 @@ Right now, this isn't in any released version of nori or riak-js.  The rough Pro
 
 When Frank released the sweet [Riak-JS site](http://riakjs.org/), I took a hard look at what purpose nori was solving:
 
-* I wanted to learn more about Riak (accomplished)
-* I wanted to experiment with a new API style
+* I wanted to learn more about Riak (accomplished).
+* I wanted to experiment with a new API style (very similar to Riak-js)
 * I wanted a higher level Riak lib, more like an ORM.
 
-The goals aligned pretty closely with riak-js, so there seemed no good reason to double our efforts.  I've decided to discontinue nori for the time being, and focus my Riak efforts in a refactoring of riak-js.  We want to have a single lib that lets you access Riak from jQuery, as well as Node.js over the HTTP and PBC APIs.
+The goals aligned pretty closely with riak-js, so there seemed no good reason to double our efforts.  I've decided to discontinue nori for the time being, and focus my Riak efforts in a refactoring of riak-js.  We want to have a single lib that lets you access Riak from jQuery (maybe), as well as Node.js over the HTTP and PBC APIs.
 
 So, what is the current progress of all this?  Here are some quick benchmarks from my iMac i7:
 
