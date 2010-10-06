@@ -94,7 +94,7 @@ blockquote {
   font-size:14px;
 }
 
-p.img img,
+.article img,
 img.floater {
   float:left;
   margin:0 1em 1em 0;
