@@ -23,7 +23,9 @@ It's the same thing, minus all the talk about feed scanning and updates.  We alr
 
 As far as Atom/RSS go, there's not a lot in the PuSH spec that really depend on them.  The feed scanning portion does, of course.  The data is all internal though, so there's no need to implement the [Content Notification][7.1] methods.  But there's no sense in parsing our own feeds, so we can push straight JSON.  The specs do say that [published items need to be Atom or RSS][7.3], but I see no reason we can't support JSON.  If the subscriber subscribes to a JSON topic, the hub pushes JSON.  If the subscriber subscribes to an Atom topic, the hub pushes Atom.
 
+<center>
 ![ewok/wookie team](http://techno-weenie.net/images/2010/10/ewok-wookie-team.jpeg)
+</center>
 
 This strategy can be applied to any other web service that sends out notifications.  That's why I wrote Nub Nub.  It's a pretty bare bones implementation, with no mention of a preferred web server or data store.  It just provides a few methods for making or responding to PuSH calls.  
 
