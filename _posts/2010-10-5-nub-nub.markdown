@@ -5,7 +5,7 @@ title: "Nub Nub: PubSubHubbub protocol implementation"
 
 I've been toying around with the idea of adding a PubSubHubbub layer around the GitHub timeline events, so I wrote [Nub Nub][nubnub].  Nub Nub is a bare implementation of PubSubHubbub so I can explore how it might be used inside GitHub.
 
-![ewok](http://techno-weenie.net/images/2010/10/ewok.jpeg)
+<p class="img">![ewok](http://techno-weenie.net/images/2010/10/ewok.jpeg)</p>
 
 PubSubHubbub (PuSH) is "a simple, open, web-hook-based pubsub protocol," according to the [homepage][pubsubhubbub].  There's a lot of talk about hub discovery URLs, Atom feeds, multicast publishing, etc.  Let's boil it all down to the essentials:
 
