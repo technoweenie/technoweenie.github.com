@@ -1,6 +1,6 @@
 --- 
 layout: post
-title: Nub Nub: PubSubHubbub protocol implementation
+title: "Nub Nub: PubSubHubbub protocol implementation"
 ---
 
 I've been toying around with the idea of adding a PubSubHubbub layer around the GitHub timeline events, so I wrote [Nub Nub][nubnub].  Nub Nub is a bare implementation of PubSubHubbub so I can explore how it might be used inside GitHub.
