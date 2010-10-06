@@ -94,11 +94,7 @@ blockquote {
   font-size:14px;
 }
 
-.article ul { margin: 0; padding: 1em 0 0; }
-.article li { 
-  color:#303030;
-  text-shadow: 0 -1px 1px #dfdfdf;
-}
+.article ul { margin: 1.5em 0 1.5em 0; padding: 0; }
 
 .article img,
 img.floater {
