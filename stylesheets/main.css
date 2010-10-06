@@ -94,6 +94,9 @@ blockquote {
   font-size:14px;
 }
 
+.article ul { list-style-type: none; margin:0; padding:0; }
+.article li { margin:0 0 0 1em; }
+
 .article img,
 img.floater {
   float:left;
