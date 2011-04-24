@@ -3,14 +3,11 @@ layout: default
 title: Home
 ---
 
+<div class="post-listing">
 {% for post in paginator.posts %}
-<div class="article">
-  <h2 class="title"><a href="{{ post.url }}">{{ post.title }}</a></h2>
-  <div class="clear">
-{{ post.content }}
+  <div class="post-summary">
+    <div class="post-date">{{ post.date | date: "%Y %b %d" }}</div>
+    <h2 class="post-title"><a href="{{ post.url }}">{{ post.title }}</a></h2>
   </div>
-  <p class="meta">
-    posted {{ post.date | date: "%Y %b %d" }}
-  </p>
-</div>
 {% endfor %}
+</div>

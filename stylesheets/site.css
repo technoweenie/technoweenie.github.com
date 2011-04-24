@@ -1,0 +1,101 @@
+body {
+  font: 16px "Lucida Grande", "Trebuchet MS", Verdana, sans-serif;
+  line-height: 175%;
+}
+
+a {
+  color: #a53;
+}
+
+a:visited {
+  color: #842;
+}
+
+a:active, a:hover {
+  color: #f61;
+  text-decoration:none;
+}
+
+blockquote {
+  margin:0 -5px;
+  padding:5px 30px 5px 50px;
+  font-size:14px;
+}
+
+.floater {
+  float:left;
+  margin:0 1em 1em 0;
+}
+
+.post-content ul { margin: 1.5em 0 1.5em 1.5em; padding: 0; }
+.post-content img { text-align: center; }
+.post-content p,
+.post-content blockquote,
+.post-content center,
+.post-content pre {
+  margin-bottom: 1em;
+}
+
+.post-listing .post-date {
+  float:left;
+  width: 10em;
+}
+
+.post-date {
+  font-weight:bold;
+  text-transform:uppercase;
+  color: #887;
+  font-size:80%
+}
+
+.post-content h1 {
+  color: #542;
+  font-size: 20px;
+  border-bottom:solid 3px #542;
+  margin: 0 -1em 1em -1em;
+  padding: 0 1em;
+  letter-spacing:2px;
+}
+
+pre {
+  font-size: 14px;
+}
+
+#header-wrapper {
+  background-color:#0C0907;
+  margin-bottom:1em;
+  background-image: url(http://dl.dropbox.com/u/3561619/blog/bg.png);
+  background-repeat: no-repeat;
+  background-position: top right;
+}
+
+#header {
+  margin-left: auto;
+  margin-right: auto;
+  width:960px;
+
+  height: 55px;
+  font: 64px Futura, "Lucida Grande", "Trebuchet MS", Verdana, sans-serif;
+  letter-spacing:5px;
+  font-weight:bold;
+  color:#fff;
+
+  overflow:hidden;
+}
+
+#header span {
+  color:#eda;
+}
+
+#content {
+  padding: 1em;
+}
+
+#sidebar {
+  padding: 1em;
+}
+
+#footer ul, #sidebar ul {
+  margin:0 0 1em; 0; padding:0;
+  list-style-type:none;
+}

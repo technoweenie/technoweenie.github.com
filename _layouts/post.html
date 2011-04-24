@@ -1,14 +1,12 @@
-{% include head.html %}
+---
+layout: default
+---
+<div class="post-content">
+  <div class="post-date">{{ page.date | date: "%Y %b %d" }}</div>
+  <h1 class="post-title">{{ page.title }}</h1>
+  <div class="post-content">
 
-<div id="content" class="span-18">
-  <h2 class="title">{{ page.title }}</h2>
-  <div class="clear">
-{{ content }}
+{{content}}
+
   </div>
-  <p class="meta">
-    posted {{ page.date | date: "%Y %b %d" }}
-  </p>
-  {% include previously.html %}
 </div>
-
-{% include footer.html %}
