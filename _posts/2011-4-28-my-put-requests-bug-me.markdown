@@ -71,9 +71,21 @@ resource.  So who says PUT is for complete replacements only?
 > In a PUT request, the enclosed entity
 > is considered to be a modified version of the resource stored on the
 > origin server, and the client is requesting that the stored version
-> be _replaced_.  With PATCH, however, the enclosed entity contains a set
+> be **replaced**.  With PATCH, however, the enclosed entity contains a set
 > of instructions describing how a resource currently residing on the
-> origin server _should be modified to produce a new version_.
+> origin server **should be modified to produce a new version**.
+
+## Is PUT Doomed?
+
+Maybe not, Sean Cribbs gave an interesting answer:
+
+<center>
+[![@seancribbs: Use PUT with a Range header (semantics of which are
+defined by the server](/images/2011/4/put-with-range.png)](https://twitter.com/seancribbs/status/63222431971688449)
+</center>
+
+I haven't seen anyone use PUT or the Range header in this way.  But,
+it's interesting to think about.
 
 ## Should I Care?
 
@@ -86,11 +98,21 @@ GET or PUT requests.  Depending on the server, user agents can work
 around this by using POST and specifying the "real" verb with a
 [`_method` parameter](https://github.com/rack/rack/blob/master/lib/rack/methodoverride.rb) or the [`X-HTTP-Method-Override` header](http://code.google.com/apis/gdata/docs/2.0/basics.html).
 
+At some point, all this POST vs PUT nonsense devolves into spec wankery
+anyway.  Though, Ryan Tomayko cracked an egg of knowledge that tipped
+the scales:
+
+    rtomayko: doesn't really matter to me. the main reason not to use PUT for partial updates is that caches can update their local stuff with the PUT body.
+    rtomayko: most every other argument I've seen for PUT vs. PATCH is spec wankery
+    Rick: caches update based on the request body?
+    rtomayko: on PUT yeah. if a cache sees a GET and stores the response in cache, it can update its cache with a subsequent PUT body from a client
+    rtomayko: assuming the PUT is successful
+
 Other then that, does it hurt anyone that certain API endpoints expect
 the PUT verb?  **No**.
 
 However, I've been working on GitHub API v3 as a clean slate.  It gave
-me a chance to infuse more REST concepts into things.  So, I weighed my
+me a chance to infuse more REST concepts into everything.  So, I weighed my
 options.
 
 * How many users will be affected?
@@ -108,3 +130,9 @@ In this specific case, I also had a way to keep the old behavior.  I
 hacked up a [quick Sinatra extension](https://gist.github.com/e73ef466841e7769b48e)
 to let me easily define actions that respond to multiple verbs.  I also
 spoke with the Sinatra team in [adding this to Sinatra itself](https://github.com/sinatra/sinatra/issues/253).
+
+## And Now, Your Moment of Zen
+
+Here's the [full diagram](http://webmachine.basho.com/diagram.html) of
+the flow that determines how [webmachine](http://webmachine.basho.com/) processes resources.  Webmachine
+is the framework that powers [Riak's HTTP API](http://wiki.basho.com/REST-API.html), among other things.
