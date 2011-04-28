@@ -81,7 +81,7 @@ Maybe not, Sean Cribbs gave an interesting answer:
 
 <center>
 [![@seancribbs: Use PUT with a Range header (semantics of which are
-defined by the server](/images/2011/4/put-with-range.png)](https://twitter.com/seancribbs/status/63222431971688449)
+defined by the server)](/images/2011/4/put-with-range.png)](https://twitter.com/seancribbs/status/63222431971688449)
 </center>
 
 I haven't seen anyone use PUT or the Range header in this way.  But,
@@ -102,10 +102,12 @@ At some point, all this POST vs PUT nonsense devolves into spec wankery
 anyway.  Though, Ryan Tomayko cracked an egg of knowledge that tipped
 the scales:
 
-    rtomayko: doesn't really matter to me. the main reason not to use PUT for partial updates is that caches can update their local stuff with the PUT body.
+    rtomayko: doesn't really matter to me. the main reason not to use PUT for partial
+      updates is that caches can update their local stuff with the PUT body.
     rtomayko: most every other argument I've seen for PUT vs. PATCH is spec wankery
     Rick: caches update based on the request body?
-    rtomayko: on PUT yeah. if a cache sees a GET and stores the response in cache, it can update its cache with a subsequent PUT body from a client
+    rtomayko: on PUT yeah. if a cache sees a GET and stores the response in cache, it
+      can update its cache with a subsequent PUT body from a client
     rtomayko: assuming the PUT is successful
 
 Other then that, does it hurt anyone that certain API endpoints expect
