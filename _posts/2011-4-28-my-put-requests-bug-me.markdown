@@ -80,8 +80,7 @@ resource.  So who says PUT is for complete replacements only?
 Maybe not, Sean Cribbs gave an interesting answer:
 
 <center>
-[![@seancribbs: Use PUT with a Range header (semantics of which are
-defined by the server)](/images/2011/4/put-with-range.png)](https://twitter.com/seancribbs/status/63222431971688449)
+[![](/images/2011/4/put-with-range.png)](https://twitter.com/seancribbs/status/63222431971688449)
 </center>
 
 I haven't seen anyone use PUT or the Range header in this way.  But,
