@@ -3,7 +3,7 @@ layout: post
 title: My PUT Requests Bug Me
 ---
 
-So here I am, writing documentation for some new [GitHub API sweetness](http://dev.github.com), when
+So here I am, writing documentation for some new [GitHub API sweetness](http://developer.github.com), when
 something strikes me.  Why are we using PUT requests for updates?
 Should it bug me that my API uses the PUT verb?
 
@@ -104,7 +104,7 @@ saying I should care (and use PATCH), or asking what was wrong with PUT.
 
 I've dealt with a lot of API bugs, and I can only think of a single one
 that had to do with the PUT verb specifically: Browsers can only send
-GET or PUT requests.  Depending on the server, user agents can work
+GET or POST requests.  Depending on the server, user agents can work
 around this by using POST and specifying the "real" verb with a
 [`_method` parameter](https://github.com/rack/rack/blob/master/lib/rack/methodoverride.rb) or the [`X-HTTP-Method-Override` header](http://code.google.com/apis/gdata/docs/2.0/basics.html).
 
