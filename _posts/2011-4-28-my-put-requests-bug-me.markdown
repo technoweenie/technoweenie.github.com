@@ -75,14 +75,26 @@ resource.  So who says PUT is for complete replacements only?
 > of instructions describing how a resource currently residing on the
 > origin server **should be modified to produce a new version**.
 
-## Is PUT Doomed?
+Mark Nottingham just pointed me towards a new draft of the HTTP Message
+Semantics RFC (written just a few days ago!).  It actually mentions
+partial PUT requests:
 
-Maybe not, Sean Cribbs gave an interesting answer:
+> An origin server SHOULD reject any PUT request that contains a
+> Content-Range header field, since it might be misinterpreted as
+> partial content (or might be partial content that is being mistakenly
+> PUT as a full representation).  Partial content updates are possible
+> by targeting a separately identified resource with state that
+> overlaps a portion of the larger resource, or by using a different
+> method that has been specifically defined for partial updates (for
+> example, the PATCH method defined in [RFC5789](http://tools.ietf.org/html/rfc5789)).
 
-[![@seancribbs: Use PUT with a Range header (semantics of which are defined by the server)](/images/2011/4/put-with-range.png)](https://twitter.com/seancribbs/status/63222431971688449)
+So in summary:
 
-I haven't seen anyone use PUT or the Range header in this way.  But,
-it's interesting to think about.
+* PUT and Content-Range don't mix (sorry [Sean](http://twitter.com/seancribbs/status/63222431971688449)!)
+* Partial PUTs can target internal resources.  For instance, you could
+  update a user's address by making a PUT request to the user's address
+  resource.
+* Or, use PATCH.
 
 ## Should I Care?
 
@@ -96,19 +108,10 @@ around this by using POST and specifying the "real" verb with a
 [`_method` parameter](https://github.com/rack/rack/blob/master/lib/rack/methodoverride.rb) or the [`X-HTTP-Method-Override` header](http://code.google.com/apis/gdata/docs/2.0/basics.html).
 
 At some point, all this POST vs PUT nonsense devolves into spec wankery
-anyway.  Though, Ryan Tomayko cracked an egg of knowledge that tipped
-the scales:
-
-    rtomayko: doesn't really matter to me. the main reason not to use PUT for partial
-      updates is that caches can update their local stuff with the PUT body.
-    rtomayko: most every other argument I've seen for PUT vs. PATCH is spec wankery
-    Rick: caches update based on the request body?
-    rtomayko: on PUT yeah. if a cache sees a GET and stores the response in cache, it
-      can update its cache with a subsequent PUT body from a client
-    rtomayko: assuming the PUT is successful
-
-Other then that, does it hurt anyone that certain API endpoints expect
-the PUT verb?  **No**.
+anyway.  Does it really hurt anyone that certain API endpoints expect
+the PUT verb?  Not really.  People are still able to ship cool shit.  It
+doesn't really matter to most people if you [call your RPC API a REST
+API](http://developer.rdio.com/blog/read/No_REST_for_the_wicked).
 
 However, I've been working on GitHub API v3 as a clean slate.  It gave
 me a chance to infuse more REST concepts into everything.  So, I weighed my
