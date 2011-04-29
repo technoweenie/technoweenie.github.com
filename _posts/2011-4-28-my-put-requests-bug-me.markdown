@@ -75,7 +75,8 @@ resource.  So who says PUT is for complete replacements only?
 > of instructions describing how a resource currently residing on the
 > origin server **should be modified to produce a new version**.
 
-Mark Nottingham just pointed me towards a new draft of the HTTP Message
+[Mark Nottingham just pointed me](http://twitter.com/mnot/status/63787616394428417)
+towards a new draft of the HTTP Message
 Semantics RFC (written just a few days ago!).  It actually mentions
 partial PUT requests:
 
@@ -132,6 +133,15 @@ In this specific case, I also had a way to keep the old behavior.  I
 hacked up a [quick Sinatra extension](https://gist.github.com/e73ef466841e7769b48e)
 to let me easily define actions that respond to multiple verbs.  I also
 spoke with the Sinatra team in [adding this to Sinatra itself](https://github.com/sinatra/sinatra/issues/253).
+
+I launched the [new GitHub API](https://github.com/blog/846-new-issues-and-gist-api) this morning, and
+I'm pretty happy with how it turned out.  It's clear that what we have
+is just enough for people to be productive in, and there's still some
+more work to be done fine tuning things.
+
+The next big thing I want to tackle on the GitHub API is [HATEOAS](http://en.wikipedia.org/wiki/HATEOAS).
+I already dipped my toe in those waters for the [Tender Support
+API](https://help.tenderapp.com/kb/api/introduction)...
 
 ## And Now, Your Moment of Zen
 
