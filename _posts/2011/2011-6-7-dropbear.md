@@ -27,16 +27,16 @@ I made two critical errors in writing the DropBear prototype:
 
 First, I originally tried to get the clients and the server to talk through
 ZeroMQ ROUTER sockets.  It _almost_ worked, but I ran into some weird
-issues.  I met some [dotcloud](http://www.dotcloud.com/) devs at the
-Riak meetup (who use a ton of ZeroMQ).  They explained why my
-understanding of ROUTER sockets was completely wrong.  I ended up having
+issues.  I ended up having
 to redesign and rewrite DropBear to use the PUSH/PULL and PUB/SUB
-sockets.
+sockets.  Luckily, I met some [dotcloud](http://www.dotcloud.com/) devs at the
+Riak meetup (who use a ton of ZeroMQ).  They explained why my
+understanding of ROUTER sockets was completely wrong.
 
 Second, I used EventMachine.  The ZeroMQ bindings work well, but the callback
 structure was awkward.  I went with EM because I really wanted the
-the clients and server to be single processes each.  I actually went
-with the Node.js bindings originally, but ran into what looks like a bug
+the clients and server to be single processes each.  I actually tried
+using the Node.js bindings originally, but ran into what looks like a bug
 with the PUB/SUB sockets.  So, I had to port it to EM.  However, most of
 the examples in the guide are tiny scripts that work a single socket.
 
