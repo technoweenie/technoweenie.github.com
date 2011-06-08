@@ -1,4 +1,4 @@
---- 
+---
 layout: post
 title: "Nub Nub: PubSubHubbub protocol implementation"
 ---
