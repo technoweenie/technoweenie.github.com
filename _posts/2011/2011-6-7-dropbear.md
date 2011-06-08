@@ -3,7 +3,7 @@ layout: post
 title: "Dropbear: Dropbox 'clone'"
 ---
 
-After reading the ZeroMQ guide several times, I really wanted to hack on
+After reading the [ZeroMQ guide](http://zguide.zeromq.org/page:all) several times, I really wanted to hack on
 a non trivial app.  Somehow I settled on a deceptively simple Dropbox
 clone.  Though, I say "clone" not because I want to move my content off
 Dropbox.  It's a simple way to describe the kind of system I'm
