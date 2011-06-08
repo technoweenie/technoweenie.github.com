@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Dropbear: Dropbox "clone"
+title: "Dropbear: Dropbox 'clone'"
 ---
 
 After reading the ZeroMQ guide several times, I really wanted to hack on
@@ -56,7 +56,7 @@ like this is how ZeroMQ is meant to be used.  Talking with [Sebastien](https://t
 (from dotcloud) confirmed it.  Lots of tiny scripts that use ZeroMQ
 messages the way Erlang uses messages to communicate.
 
-As a project, DropBear is pretty much a failure.  But the experience
+As a project, DropBear is pretty much a failure right now.  But the experience
 building it taught me a lot about how ZeroMQ should work.  It's always
 fun to play around in new environments, especially when they challenge
 the way you think about writing code.
