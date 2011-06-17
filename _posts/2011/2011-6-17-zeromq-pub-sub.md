@@ -30,7 +30,7 @@ One note: like Redis, ZeroMQ has no guarantees about robust pub/sub
 message passing.  Other ZeroMQ sockets will hold messages in memory until
 the destination socket is available to take them.  Pub/sub sockets do
 none of this.  If a sub socket is not around to receive a message, it
-won't ever receive it.  The [ZeroMQ Guide](http://zguide.zeromq.org/page:all#Chapter-Five-Advanced-Publish-Subscribe) goes through a few advanced patterns for designing a reliable pub/sub infrastructure.
+won't ever receive it.  The [ZeroMQ Guide](http://zguide.zeromq.org/page:all#Chapter-Five-Advanced-Publish-Subscribe) goes through a few advanced patterns for designing a reliable pub/sub infrastructure.  However, your sub sockets will reconnect on their own if the publisher disconnects for whatever reason.
 
 Why would you use Redis over ZeroMQ?
 
@@ -128,6 +128,15 @@ This works exactly like the Redis example:
     #ruby-lang - [qrush]: I think it's Array#include? you really want.
     #rubyonrails - [qrush]: `rake routes` right?
     #rubyonrails - [turbage]: Oh, duh. thanks bro.
+
+## Advanced Pub/Sub
+
+[sustrik](http://news.ycombinator.com/user?id=sustrik) on HN [mentioned](http://news.ycombinator.com/item?id=2665824) a
+whitepaper on forwarding subscriptions through the network.  Check out
+the [Design of PUB/SUB subsystem in ØMQ][whitepaper] whitepaper for a
+look at a larger pub/sub architecture.
+
+[whitepaper]: http://www.250bpm.com/pubsub
 
 If this sounds interesting to you, check out [Jakub Stastny's post: "Why Rubyists Should Care About Messaging"][messaging].  If you're hungry for more after that, the [ZeroMQ Guide](http://zguide.zeromq.org/page:all) goes into way more detail.  It's very well done, but might create an obsession around messaging :)
 
