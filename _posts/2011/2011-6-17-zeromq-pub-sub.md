@@ -131,4 +131,6 @@ This works exactly like the Redis example:
 
 If this sounds interesting to you, check out [Jakub Stastny's post: "Why Rubyists Should Care About Messaging"][messaging].  If you're hungry for more after that, the [ZeroMQ Guide](http://zguide.zeromq.org/page:all) goes into way more detail.  It's very well done, but might create an obsession around messaging :)
 
+You can comment on this through the [HN discussion](http://news.ycombinator.com/item?id=2665824)...
+
 [messaging]: http://www.rubyinside.com/why-rubyists-should-care-about-messaging-a-high-level-intro-5017.html
