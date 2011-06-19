@@ -25,12 +25,8 @@ Nick's approach (and [Radish](http://radishapp.com/) is really awesome).  Why wo
 * You don't want to deal with connection errors.  ZeroMQ publishers and
   subscribers can start up in any order.  They'll connect and reconnect
   behind the scenes.
-
-One note: like Redis, ZeroMQ has no guarantees about robust pub/sub
-message passing.  Other ZeroMQ sockets will hold messages in memory until
-the destination socket is available to take them.  Pub/sub sockets do
-none of this.  If a sub socket is not around to receive a message, it
-won't ever receive it.  The [ZeroMQ Guide](http://zguide.zeromq.org/page:all#Chapter-Five-Advanced-Publish-Subscribe) goes through a few advanced patterns for designing a reliable pub/sub infrastructure.  However, your sub sockets will reconnect on their own if the publisher disconnects for whatever reason.
+* ZeroMQ PUB sockets will buffer messages if a SUB socket
+  drops and reconnects.  Read more about [reliable pub sub](http://localhost:4000/2011/6/19/reliable-zeromq-pub-sub/)
 
 Why would you use Redis over ZeroMQ?
 
