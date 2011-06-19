@@ -110,3 +110,5 @@ I still run into rare cases where the Interrupt is raised inside the
 [trapping signals][igvita] to control how your script exits.
 
 [igvita]: http://www.igvita.com/2008/07/22/unix-signals-for-live-debugging/
+
+You can comment on this through the [HN discussion](http://news.ycombinator.com/item?id=2671372)...
