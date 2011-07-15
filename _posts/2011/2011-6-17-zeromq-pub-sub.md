@@ -26,7 +26,7 @@ Nick's approach (and [Radish](http://radishapp.com/) is really awesome).  Why wo
   subscribers can start up in any order.  They'll connect and reconnect
   behind the scenes.
 * ZeroMQ PUB sockets will buffer messages if a SUB socket
-  drops and reconnects.  Read more about [reliable pub sub](http://localhost:4000/2011/6/19/reliable-zeromq-pub-sub/)
+  drops and reconnects.  Read more about [reliable pub sub](/2011/6/19/reliable-zeromq-pub-sub/).
 
 Why would you use Redis over ZeroMQ?
 
