@@ -99,3 +99,20 @@ pre {
   margin:0 0 1em; 0; padding:0;
   list-style-type:none;
 }
+
+.twitter-follow-box a {
+  display: block;
+  padding: 10px;
+  color: #457597;
+  background: url('/images/twitter_birder.png') 98% 14px no-repeat, -webkit-gradient(linear, left top, left bottom, from(#E2EFF9), to(#B7D8F0));
+  text-shadow: 0 0 1px white;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: bold;
+  border: 1px solid #9EBFD6;
+}
+
+.twitter-follow-box a:visited, .twitter-follow-box a:hover {
+  color: #457597;
+}
+
