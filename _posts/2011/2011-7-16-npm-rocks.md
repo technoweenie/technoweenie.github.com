@@ -139,3 +139,6 @@ inside my app.  I can run this once after updating code on our servers,
 and it's ready to rock.  This feature is reminiscent of Bundler, but
 again, it doesn't rely on your app using npm at runtime.  
 
+You can comment on this through the [HN discussion][hn]...
+
+[hn]: http://news.ycombinator.com/item?id=2818299
