@@ -14,8 +14,8 @@ understand GET/HEAD and POST.
 </a>
 </center>
 
-Using more of the HTTP verbs lets us keep the URLs cleaner.  However, web 
-browsers don't understand them, so a workaround was needed.  Rails looks at a 
+Using more of the HTTP methods lets us keep the URLs cleaner.  Web 
+browsers don't understand PUT/PATCH/DELETE, so a workaround was needed.  Rails looks at a 
 `_method` GET parameter on POST requests to determine what HTTP verb it should
 be recognized as.  The [GData API](http://code.google.com/apis/gdata/docs/2.0/basics.html#UpdatingEntry)
 supports this behavior through the `X-HTTP-Method-Override` header.
@@ -35,12 +35,13 @@ end
 If you don't like Rails, just close your eyes and think of your favorite
 web framework...
 
-This action works great for a simple form in a browser.  You click "DELETE",
+This action works great for a simple form in a browser.  You click
+"Submit",
 it POSTs to the server, and then you end up back at the root page.
 Then, you can add some jQuery to spice things up for newer browsers.
 Progressive enhancement and all that.
 
-{% highlight ruby %}
+{% highlight javascript %}
 $('.remove-widget').click(function() {
   $.del(this.href, function() {
     // celebrate, disable a spinner, etc
@@ -49,13 +50,13 @@ $('.remove-widget').click(function() {
 })
 {% endhighlight %}
 
-This works great in all browsers, except IE9.  We discovered that not
+This works great in all modern browsers, except IE9.  We discovered that not
 only does IE9 send a real DELETE request, it also _follows the redirect_
 with another DELETE.  If that redirect points to another resource, you
 can get a dangerous cascading effect.
 
-[RFC 2616][RFC 2616] is not clear about what to do in this case, but suggests
-strongly that redirects are not automatically followed unless coming
+[RFC 2616][RFC 2616] is not clear about what to do in this case, but strongly
+suggests that redirects are not automatically followed unless coming
 from a [safe method](http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html).
 
 > If the 302 status code is received in response to a request other than GET 
@@ -77,7 +78,7 @@ an edge case that slipped through an if statement because `"DELETE" !=
 to see what they say.  I really like the idea of browsers supporting
 more HTTP methods, but I'd like them to be a little cautious too.  
 
-Also, if your application might be responding to ajax requests with
+So, if your application might be responding to ajax requests with
 redirects, you should probably start sending back `200 OK`...
 
 <center>
