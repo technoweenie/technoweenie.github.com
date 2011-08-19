@@ -3,10 +3,9 @@ layout: post
 title: IE9 DELETES stuff
 ---
 
-So, [Kyle](http://twitter.com/kneath) and I discovered IE9 understands
-real DELETE requests.  Kudos!  This is significant because of the big
-blocker that restful web services have run into with browsers: They only
-understand GET/HEAD and POST.  
+So, [Kyle](http://twitter.com/kneath) and I discovered some interesting 
+IE9 behavior.  Redirect responses from DELETE requests are followed with
+another DELETE.  How is this surprising?
 
 <center>
 <a href="http://en.wikipedia.org/wiki/Planetary_(comics)">
@@ -15,7 +14,7 @@ understand GET/HEAD and POST.
 </center>
 
 Using more of the HTTP methods lets us keep the URLs cleaner.  Web 
-browsers don't understand PUT/PATCH/DELETE, so a workaround was needed.  Rails looks at a 
+browsers don't understand PUT/PATCH/DELETE in forms, so a workaround was needed.  Rails looks at a 
 `_method` GET parameter on POST requests to determine what HTTP verb it should
 be recognized as.  The [GData API](http://code.google.com/apis/gdata/docs/2.0/basics.html#UpdatingEntry)
 supports this behavior through the `X-HTTP-Method-Override` header.
@@ -75,8 +74,7 @@ browsers.
 I can't imagine that this behavior in IE9 was on purpose.  It feels like
 an edge case that slipped through an if statement because `"DELETE" !=
 "POST"`.  I've submitted feedback to the IE9 team about this issue.  I'm curious
-to see what they say.  I really like the idea of browsers supporting
-more HTTP methods, but I'd like them to be a little cautious too.  
+to see what they say.
 
 So, if your application might be responding to ajax requests with
 redirects, you should probably start sending back `200 OK`...
