@@ -16,6 +16,13 @@ a:active, a:hover {
   text-decoration:none;
 }
 
+table {
+  margin-bottom:1em;
+  padding:5px 30px 5px 50px;
+}
+
+table td { padding-right: 1em; }
+
 blockquote {
   margin:0 -5px;
   padding:5px 30px 5px 50px;

@@ -88,4 +88,43 @@ redirects, you should probably start sending back `200 OK`...
 </a>
 </center>
 
+**Update:** Eric Law on the [IEInternals blog][ie] responded to one of Kyle's
+tweets.  Apparently the behavior is correct according to HTTP 1.0, and
+IE has been following DELETE redirects since at least IE6.
+
+[ie]: http://blogs.msdn.com/b/ieinternals/archive/2011/08/19/understanding-the-impact-of-redirect-response-status-codes-on-http-methods-like-head-get-post-and-delete.aspx
+
+Here's the breakdown of browser behavior when receiving a 302 redirect from
+a DELETE request:
+
+<table class="humblebrag" border="0" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td valign="top">IE 6-10</td>
+<td valign="top">DELETE method is preserved</td>
+</tr>
+<tr>
+<td valign="top">Chrome 13</td>
+<td valign="top">Converts to GET</td>
+</tr>
+<tr>
+<td valign="top">Firefox 6</td>
+<td valign="top">Converts to GET</td>
+</tr>
+<tr>
+<td valign="top">Safari 5.1</td>
+<td valign="top">Converts to GET</td>
+</tr>
+<tr>
+<td valign="top">Opera 11.5</td>
+<td valign="top">Converts to GET</td>
+</tr>
+</tbody>
+</table>
+
+We didn't see the behavior in IE8, so we assumed it was new to IE9. At least,
+no one was sending in crazy bug reports from other browsers. This is another
+example why developers hate dealing with IE.  Kudos to the standards
+compliance, though!
+
 Discuss this post on [Hacker News](http://news.ycombinator.com/item?id=2903493).
