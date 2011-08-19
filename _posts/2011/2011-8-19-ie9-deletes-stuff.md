@@ -81,11 +81,13 @@ more HTTP methods, but I'd like them to be a little cautious too.
 So, if your application might be responding to ajax requests with
 redirects, you should probably start sending back `200 OK`...
 
+[google web accelerator]: http://37signals.com/svn/archives2/google_web_accelerator_hey_not_so_fast_an_alert_for_web_app_designers.php
+[p]: http://en.wikipedia.org/wiki/Planetary_(comics)
+
 <center>
 <a href="http://en.wikipedia.org/wiki/Planetary_(comics)">
 <img src="/images/2011/strangeworld.jpg" />
 </a>
 </center>
 
-[google web accelerator]: http://37signals.com/svn/archives2/google_web_accelerator_hey_not_so_fast_an_alert_for_web_app_designers.php
-[p]: http://en.wikipedia.org/wiki/Planetary_(comics)
+Discuss this post on [Hacker News](http://news.ycombinator.com/item?id=2903493).
