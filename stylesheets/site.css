@@ -1,11 +1,9 @@
-@media (min-width: 768px) {
-  .masthead-wide {
-    display: none;
-  }
+.masthead-wide {
+  display: none;
+}
 
-  .masthead-skinny {
-    display: block;
-  }
+.masthead-skinny {
+  display: block;
 }
 
 @media (min-width: 990px) {
