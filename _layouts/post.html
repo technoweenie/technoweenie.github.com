@@ -1,18 +1,8 @@
 ---
 layout: default
 ---
-<div class="post-content">
-  <div class="post-date">{{ page.date | date: "%Y %b %d" }}</div>
-  <h1 class="post-title">{{ page.title }}</h1>
-  <div class="post-content">
-
-{{content}}
-
-<p class="twitter-follow-box">
-  <a href="http://twitter.com/technoweenie">
-    Follow @technoweenie on Twitter
-  </a> 
-</p>
-
-  </div>
+<div class="post">
+  <h1>{{ page.title }}</h1>
+  <span class="post-date">{{ page.date | date_to_string }}</span>
+  {{ content }}
 </div>
