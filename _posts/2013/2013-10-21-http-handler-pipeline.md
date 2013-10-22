@@ -52,3 +52,40 @@ pipe := httppipe.New(
 
 http.Handle("/", pipe)
 {% endhighlight %}
+
+This is how `http.StripPrefix` currently wraps another handler:
+
+{% highlight go %}
+func StripPrefix(prefix string, h Handler) Handler {
+  if prefix == "" {
+    return h
+  }
+  return HandlerFunc(func(w ResponseWriter, r *Request) {
+    if p := strings.TrimPrefix(r.URL.Path, prefix); len(p) < len(r.URL.Path) {
+      r.URL.Path = p
+      h.ServeHTTP(w, r)
+    } else {
+      NotFound(w, r)
+    }
+  })
+}
+{% endhighlight %}
+
+It could be rewritten like this:
+
+{% highlight go %}
+type StripPrefixHandler string
+
+func (h *StripPrefixHandler) ServeHTTP(w ResponseWriter, r *Request) {
+  if h.Prefix == "" {
+    return
+  }
+  if p := strings.TrimPrefix(r.URL.Path, h.Prefix); len(p) < len(r.URL.Path) {
+    r.URL.Path = p
+  }
+}
+
+func StripPrefix(prefix string) Handler {
+  StripPrefixHandler(prefix)
+}
+{% endhighlight %}
