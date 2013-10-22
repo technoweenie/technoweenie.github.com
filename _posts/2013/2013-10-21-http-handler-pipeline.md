@@ -89,7 +89,7 @@ func (h *StripPrefixHandler) ServeHTTP(w ResponseWriter, r *Request) {
 }
 
 func StripPrefix(prefix string) Handler {
-  &StripPrefixHandler{prefix}
+  return &StripPrefixHandler{prefix}
 }
 {% endhighlight %}
 
