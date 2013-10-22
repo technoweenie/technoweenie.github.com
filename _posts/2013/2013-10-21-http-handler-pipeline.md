@@ -74,7 +74,9 @@ func StripPrefix(prefix string, h Handler) Handler {
 It could be rewritten like this:
 
 {% highlight go %}
-type StripPrefixHandler string
+type StripPrefixHandler struct {
+  Prefix string
+}
 
 func (h *StripPrefixHandler) ServeHTTP(w ResponseWriter, r *Request) {
   if h.Prefix == "" {
@@ -87,7 +89,7 @@ func (h *StripPrefixHandler) ServeHTTP(w ResponseWriter, r *Request) {
 }
 
 func StripPrefix(prefix string) Handler {
-  StripPrefixHandler(prefix)
+  &StripPrefixHandler{prefix}
 }
 {% endhighlight %}
 
