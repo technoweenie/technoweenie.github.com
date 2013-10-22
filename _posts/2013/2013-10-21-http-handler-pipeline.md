@@ -10,7 +10,7 @@ Go has simple HTTP server interfaces baked in.
 GitHub itself runs as a set of about 15 Rack middleware (depending on the exact
 environment that it boots in).  They are setup in a nice declarative format:
 
-```ruby
+{% highlight ruby %}
 # GitHub app middleware pipeline
 use InvalidCookieDropper
 use Rack::ContentTypeCleaner
@@ -18,33 +18,31 @@ use Rails::Rack::Static unless %w[staging production].include?(Rails.env)
 
 # Enable Rack middleware for capturing (or generating) request id's
 use Rack::RequestId
-```
+{% endhighlight %}
 
 However, Rack actually assembles the objects like this:
 
-```ruby
+{% highlight ruby %}
 InvalidCookieDropper.new(
   Rack::ContentTypeCleaner.new(
     Rack::RequestId.New(app)
   )
 )
-```
+{% endhighlight %}
 
 This wraps every request in a nested call stack, which gets exposed in any
 stack traces:
 
-```
-lib/rack/request_id.rb:20:in `call'
-lib/rack/content_type_cleaner.rb:11:in `call'
-lib/rack/invalid_cookie_dropper.rb:24:in `call'
-lib/github/timer.rb:47:in `block in call'
-```
+    lib/rack/request_id.rb:20:in `call'
+    lib/rack/content_type_cleaner.rb:11:in `call'
+    lib/rack/invalid_cookie_dropper.rb:24:in `call'
+    lib/github/timer.rb:47:in `block in call'
 
 [go-httppipe](https://github.com/technoweenie/go-httppipe) uses an approach that
 simply loops through a slice of `http.Handler` objects, and returns after one of
 them calls `WriteHeader()`.
 
-```go
+{% highlight go %}
 pipe := httppipe.New(
   invalidcookiedropper.New(),
   contenttypecleaner.New()
@@ -53,4 +51,4 @@ pipe := httppipe.New(
 )
 
 http.Handle("/", pipe)
-```
+{% endhighlight %}
