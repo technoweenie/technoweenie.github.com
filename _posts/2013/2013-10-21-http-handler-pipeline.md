@@ -83,8 +83,11 @@ func (h *StripPrefixHandler) ServeHTTP(w ResponseWriter, r *Request) {
     return
   }
   
-  if p := strings.TrimPrefix(r.URL.Path, h.Prefix); len(p) < len(r.URL.Path) {
+  p := strings.TrimPrefix(r.URL.Path, h.Prefix)
+  if len(p) < len(r.URL.Path) {
     r.URL.Path = p
+  } else {
+    NotFound(w, r)
   }
 }
 
@@ -93,5 +96,5 @@ func StripPrefix(prefix string) Handler {
 }
 {% endhighlight %}
 
-Notice that we don't have to worry about calling an inner handler, or falling
-back to `NotFound()`.  The httppipe package takes care of that.
+Notice that we don't have to worry about passing the response writer and request
+to the inner handler anymore.
