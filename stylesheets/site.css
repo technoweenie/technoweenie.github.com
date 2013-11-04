@@ -1,17 +1,5 @@
-.masthead-wide {
-  display: none;
-}
-
-.masthead-skinny {
-  display: block;
-}
-
 @media (min-width: 990px) {
-  .masthead-wide {
-    display: block;
-  }
-
-  .masthead-skinny {
-    display: none;
+  .masthead-inner h1 {
+    font-size: 24px;
   }
 }
