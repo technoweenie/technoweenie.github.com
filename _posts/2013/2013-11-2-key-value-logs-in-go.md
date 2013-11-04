@@ -8,20 +8,20 @@ upload endpoint][upload-api].  It's a really simple, low traffic service to dip
 our toes in the Go waters.  Before I could even think about shipping it though,
 I had to answer these questions:
 
-* Can I deploy a Go app?
+* How can I deploy a Go app?
 * Will it be fast enough?
 * Will I have any visibility into it?
 
 The first two questions are simple enough.  I worked with some Ops people on
-getting Go support in our Boxen and Puppet recipes.  Based on the nature of the
-service (pushing release binaries from the API to S3), I knew that raw execution
-speed wasn't going to be a factor.  To help answer question 3, I wrote [grohl][g],
-a combination logging, error reporting, and metrics library.
+getting Go support in our Boxen and Puppet recipes.  Considering how much time
+this app would spend in network requests, I knew that raw execution speed wasn't
+going to be a factor. To help answer question 3, I wrote [grohl][g], a
+combination logging, error reporting, and metrics library.
 
     import "github.com/technoweenie/grohl"
 
-A few months ago, we started using [scrolls][s] for logging on GitHub.com.  It's
-a simple logger that writes out key/value logs:
+A few months ago, we started using the [scrolls][s] Ruby gem for logging on
+GitHub.com.  It's a simple logger that writes out key/value logs:
 
     app=myapp deploy=production fn=trap signal=TERM at=exit status=0
 
