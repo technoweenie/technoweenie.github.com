@@ -50,5 +50,5 @@ They just show up in the development log like anything else.
 [s]: https://github.com/asenchi/scrolls
 [errors]: https://github.com/technoweenie/grohl/blob/149d36ce630d7867ac5289be58b3eef7f92297ab/errors.go#L9-L11
 [statter]: https://github.com/technoweenie/grohl/blob/149d36ce630d7867ac5289be58b3eef7f92297ab/statter.go#L10-L16
-[g2s]: github.com/peterbourgon/g2s
+[g2s]: https://github.com/peterbourgon/g2s
 [haystack]: https://github.com/github/go-opstocat/blob/master/haystack.go
