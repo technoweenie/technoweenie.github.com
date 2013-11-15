@@ -45,7 +45,7 @@ to a [custom HTTP endpoint][haystack].  It's also nice that I can double check
 my app's metrics and error reporting without having to spin up external services.
 They just show up in the development log like anything else.
 
-Comment are [on reddit](http://www.reddit.com/r/golang/comments/1pvlqz/keyvalue_logs_in_go/).
+Comments are [on reddit](http://www.reddit.com/r/golang/comments/1pvlqz/keyvalue_logs_in_go/).
 
 [upload-api]: http://developer.github.com/v3/repos/releases/#upload-a-release-asset
 [g]: https://github.com/technoweenie/grohl
