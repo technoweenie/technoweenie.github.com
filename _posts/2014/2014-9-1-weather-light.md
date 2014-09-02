@@ -4,7 +4,7 @@ title: Weather Lights
 ---
 
 I recently attended, and even spoke at, the [GitHub Patchwork event in Boulder](https://github.com/blog/1869-patchwork-night-boulder-edition)
-last month.  My son, Nathan, attended to get his first taste of the [GitHub
+last month.  My son, Nathan, tagged along to get his first taste of the [GitHub
 Flow](https://guides.github.com/introduction/flow/index.html).  I don't
 necessarily want him to be a programmer, but I do push him to learn a little to
 augment his interest in meteorology and astronomy.  
@@ -31,7 +31,7 @@ out the ID of your light](http://developers.meethue.com/1_lightsapi.html).
 Next, you need to setup an account for the [Weather2 API](http://www.myweather2.com/developer/).
 There are a lot of services out there, but this one is free, supports JSON
 responses, and also gives simple forecasts.  They allow 500 requests a day.  If
-you set this script to run every 5 minutes, you'll only use 480 requests.
+you set this script to run every 5 minutes, you'll only use 288 requests.
 
 After you're done, you should have five values:
 
@@ -58,10 +58,10 @@ is written.  If you look at the file, you'll see 4 sections:
 
 ## Step 1: Get the temperature
 
-The first thing the script needs to do, is get the temperature.  There are two
-ways: either through an argument in the script (useful for testing), or the
-Weather API.  This is a simple script that pulls the current temperature from
-the API forecast results.
+The first thing the script needs is the temperature.  There are two ways to get
+it: through an argument in the script (useful for testing), or a Weather API.
+This is a simple script that pulls the current temperature from the API forecast
+results.
 
 ```ruby
 if temp = ARGV[0]
@@ -111,7 +111,7 @@ hsl = [
 ]
 ```
 
-I simply wrote the result out in the HSL hash:
+I simply wrote the result in an HSL hash in 5 degree increments.
 
 ```ruby
 HSL = {
@@ -126,8 +126,7 @@ saturation and brightness values don't change that much, especially for the
 hotter temperatures.  Second, the hue values range from 53884 to 1492.  I probably
 didn't need to convert all those RGB values by hand :)
 
-Now that we have HSL colors for temperatures in 5 degree increments, we need a
-way to convert any temperature to a color.
+We can use this list of HSL values to convert any temperature to a color.
 
 ```ruby
 def color_for_temp(temp)
@@ -207,3 +206,8 @@ of looking up by temperature, use a percentage to get a hue range from 55,000 to
 1500.
 2. Can we do something interesting with the saturation and brightness values?  
 Maybe tweak them based on the time of day.
+
+I hope you enjoyed this little tutorial.  I'd love to hear any experiences from
+working with it!  Send me pictures or emails either to the [GitHub issue for
+this post](https://github.com/technoweenie/technoweenie.github.com/issues/3),
+or my [email address](mailto:technoweenie@gmail.com).
