@@ -22,9 +22,9 @@ jump straight to the source at [github.com/technoweenie/weatherhue](https://gith
 
 ## Requirements
 
-Unfortunately, there's one hefty requirement: You need a Philips Hue light kit.
-This means you need one Hue bridge, and one light.  Once you have the kit, you'll
-have to [use the API](http://developers.meethue.com/gettingstarted.html) to
+Unfortunately, there's one hefty requirement: You need a Philips Hue light kit,
+which consists of a Hue bridge and a light. Once you have the kit, you'll have
+to [use the Hue API](http://developers.meethue.com/gettingstarted.html) to
 [create a user](http://developers.meethue.com/4_configurationapi.html) and [figure
 out the ID of your light](http://developers.meethue.com/1_lightsapi.html).
 
@@ -33,7 +33,7 @@ There are a lot of services out there, but this one is free, supports JSON
 responses, and also gives simple forecasts.  They allow 500 requests a day.  If
 you set this script to run every 5 minutes, you'll only use 288 requests.
 
-After you're done, you should have five values:
+After you're done, you should have five values.  Write these down somewhere.
 
 * `HUE_API` - The address of your Hue bridge.  Probably something like "http://10.0.0.1"
 * `HUE_USER` - The username you setup with the Hue API.
@@ -55,6 +55,8 @@ is written.  If you look at the file, you'll see 4 sections:
 2. A few defined helper functions.
 3. A list of temperatures and their HSL values.
 4. Running code that gets the temperature and sets the light.
+
+You'll likely find yourself bouncing around as you write the various sections.
 
 ## Step 1: Get the temperature
 
@@ -84,7 +86,7 @@ end
 
 ## Step 2: Choose a color based on the temperature
 
-I wanted the color to match the color range on local news forecasts.
+I wanted the color to match color ranges on local news forecasts.
 
 ![](https://cloud.githubusercontent.com/assets/21/4112672/12d66b04-3235-11e4-8e38-8d24acfa5152.png)
 
@@ -111,7 +113,7 @@ hsl = [
 ]
 ```
 
-I simply wrote the result in an HSL hash in 5 degree increments.
+I simply wrote the result in an HSL hash:
 
 ```ruby
 HSL = {
