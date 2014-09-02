@@ -206,6 +206,10 @@ of looking up by temperature, use a percentage to get a hue range from 55,000 to
 1500.
 2. Can we do something interesting with the saturation and brightness values?  
 Maybe tweak them based on the time of day.
+3. Update the script to use the forecast for the day, and not the current
+temperature.
+4. Set a schedule that automatically only keeps the light on in the mornings when
+you actually care what the temperature will be.
 
 I hope you enjoyed this little tutorial.  I'd love to hear any experiences from
 working with it!  Send me pictures or emails either to the [GitHub issue for
