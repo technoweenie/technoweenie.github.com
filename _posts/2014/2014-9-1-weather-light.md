@@ -204,8 +204,7 @@ Confirm the crontab with `crontab -l`.
 ## Bonus Round
 
 1. Can we simplify the function to get the HSL values for a temperature?  Instead
-of looking up by temperature, use a percentage to get a hue range from 55,000 to
-1500.
+of looking up by temperature, use a percentage to get a hue range from 55,000 to 1500.
 2. Can we do something interesting with the saturation and brightness values?  
 Maybe tweak them based on the time of day.
 3. Update the script to use the forecast for the day, and not the current
