@@ -3,8 +3,8 @@ layout: post
 title: Weather Lights
 ---
 
-I recently attended, and even spoke at, the [GitHub Patchwork event in Boulder](https://github.com/blog/1869-patchwork-night-boulder-edition)
-last month.  My son, Nathan, tagged along to get his first taste of the [GitHub
+I recently spoke at the [GitHub Patchwork event in Boulder](https://github.com/blog/1869-patchwork-night-boulder-edition)
+last month.  My son Nathan tagged along to get his first taste of the [GitHub
 Flow](https://guides.github.com/introduction/flow/index.html).  I don't
 necessarily want him to be a programmer, but I do push him to learn a little to
 augment his interest in meteorology and astronomy.  
