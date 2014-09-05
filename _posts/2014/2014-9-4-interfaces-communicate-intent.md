@@ -26,7 +26,7 @@ I know that I should probably close it somewhere.
 
 This brings up a good rule of thumb when designing Go APIs.  Prefer an
 `io.Reader` over an `io.ReadCloser` for arguments.  Let the calling code handle
-its own  resource cleanup.Simple enough.  So what breaks this rule?  Oh, my
+its own resource cleanup. Simple enough.  So what breaks this rule?  Oh, my
 dumb [passthrough package](https://github.com/technoweenie/go-passthrough/blob/9b75ef991fd3ad93fe346aeb23980c84fb3635fc/passthrough.go#L22).
 
 Here's the intended way to use it:
