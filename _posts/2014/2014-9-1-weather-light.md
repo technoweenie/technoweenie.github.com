@@ -23,8 +23,8 @@ jump straight to the source at [github.com/technoweenie/weatherhue](https://gith
 ## Requirements
 
 Unfortunately, there's one hefty requirement: You need a Philips Hue light kit,
-which consists of a Hue bridge and a light. Once you have the kit, you'll have
-to [use the Hue API](http://developers.meethue.com/gettingstarted.html) to
+which consists of a Hue bridge and a few lights. Once you have the kit, you'll
+have to [use the Hue API](http://developers.meethue.com/gettingstarted.html) to
 [create a user](http://developers.meethue.com/4_configurationapi.html) and [figure
 out the ID of your light](http://developers.meethue.com/1_lightsapi.html).
 
@@ -42,7 +42,7 @@ After you're done, you should have five values.  Write these down somewhere.
 * `WEATHER2_QUERY` - The latitude and longitude of your house.  For example,
 Pikes Peak is at "38.8417832,-105.0438213."
 
-Finally, you need ruby, with the following gems: `faraday`, `color`, and `dotenv`.
+Finally, you need ruby, with the following gems: `faraday` and `dotenv`.
 If you're on a version of ruby lower than 1.9, you'll also want the `json` gem.
 
 ## Writing the script
@@ -90,66 +90,57 @@ I wanted the color to match color ranges on local news forecasts.
 
 ![](https://cloud.githubusercontent.com/assets/21/4112672/12d66b04-3235-11e4-8e38-8d24acfa5152.png)
 
-I actually went through the tedious process of making a list of HSL values at 5
-degree increments.  The eye dropper app I used gave me RGB values from 0-255,
-which had to be converted to the HSL values that the Hue lights take.  Here's
-how I did it in ruby with the `color` gem:
+Our initial attempt required used color math to calculate the color between set
+values in 5 degree increments.  This required us to specify 25 colors between
+-20 and 100 degrees.  When we did that, we noticed a pattern:
+
+1. The saturation and brightness values didn't change much.
+2. The hue value started high and eventually went down to zero.
+
+My son saw this, and suggested that we simply calculate the hue for a
+temperature, leaving the saturation and brightness values the same.  So then
+I talked him through a simple algorithm based on some math concepts he'd
+learned.
+
+First, we set an upper and lower bound that we wanted to track.  We decided to
+track from -20 to 100.  The Hue light takes values from 0 to 65535.
 
 ```ruby
-rgb = [250, 179, 250]
-
-# convert the values 0-255 to a decimal between 0 and 1.
-rgb_color = Color::RGB.from_fraction 250/255.0, 179/255.0, 255/255.0
-hsl_color = rgb_color.to_hsl
-
-# convert hsl decimals to the Philips Hue values
-hsl = [
-  # hue
-  (hsl_color.h * 65535).to_i,
-  # saturation
-  (hsl_color.s * 255).to_i,
-  # light (brightness)
-  (hsl_color.l * 255).to_i,
-]
+HUE = {
+  -20 => 60_000, # a deep purple
+  100 => 0, # bright red
+}
 ```
 
-I simply wrote the result in an HSL hash:
+The `#hue_for_temp` method gets the color range of any of the highest mapped
+temperature below the actual temperatur.  It then uses a ratio to get the hue
+based on a range of hues.
+
+For example:
 
 ```ruby
-HSL = {
-  -20=>[53884, 255, 217],
-  -15=>[53988, 198, 187],
-  -10=>[53726, 161, 167],
-  # ...
+temp = 50
+full_range = 120 # 100 - -20
+temp_range = 60 # 40 - -20
+temp_perc = temp_range / full_range.to_f
+
+full_hue_range = 60_000 # HUE[-20] - HUE[100]
+hue_range = full_hue_range * temp_perc
+hue = min_hue - hue_range
 ```
 
-After I had converted everything, I noticed a couple things.  First, the
-saturation and brightness values don't change that much, especially for the
-hotter temperatures.  Second, the hue values range from 53884 to 1492.  I probably
-didn't need to convert all those RGB values by hand :)
-
-We can use this list of HSL values to convert any temperature to a color.
+The `#hue_for_temp` method lets us set hue values for any temperature we want,
+too.  While checking the output colors, my son wanted to set 50 to green for
+"hoodie weather."  This means that 60 is a really light yellow.  70 is orange,
+meaning we can leave off any light jackets.  This is the set of mapped
+temperatures that we ended with:
 
 ```ruby
-def color_for_temp(temp)
-  remainder = temp % 5
-  if remainder == 0
-    return HSL[temp]
-  end
-
-  # get the lower and upper bound around a temp
-  lower = temp - remainder
-  upper = lower + 5
-
-  # convert the HSL values to Color::HSL objects
-  lower_color = hsl_to_color(HSL[lower])
-  upper_color = hsl_to_color(HSL[upper])
-
-  # use Color::HSL#mix_with to get a color between two colors
-  color = lower_color.mix_with(upper_color, remainder / 5.0)
-
-  color_to_hsl color
-end
+HUE = {
+  -20 => 60_000,
+  50 => 25_500,
+  100 => 0,
+}
 ```
 
 ## Step 3: Set the light color
@@ -158,12 +149,11 @@ Now that we have the HSL values for the temperature, it's time to set the Philip
 Hue light.  First, create a state object for the light:
 
 ```ruby
-# temp_color is an array of HSL colors: [53884, 255, 217]
 state = {
   :on => true,
-  :hue => temp_color[0],
-  :sat => temp_color[1],
-  :bri => temp_color[2],
+  :hue => hue_for_temp(temp),
+  :sat => 255,
+  :bri => 200,
   # performs a smooth transition to the new color for 1 second
   :transitiontime => 10,
 }
@@ -203,13 +193,9 @@ Confirm the crontab with `crontab -l`.
 
 ## Bonus Round
 
-1. Can we simplify the function to get the HSL values for a temperature?  Instead
-of looking up by temperature, use a percentage to get a hue range from 55,000 to 1500.
-2. Can we do something interesting with the saturation and brightness values?  
-Maybe tweak them based on the time of day.
-3. Update the script to use the forecast for the day, and not the current
+1. Update the script to use the forecast for the day, and not the current
 temperature.
-4. Set a schedule that automatically only keeps the light on in the mornings when
+2. Set a schedule that automatically only keeps the light on in the mornings when
 you actually care what the temperature will be.
 
 I hope you enjoyed this little tutorial.  I'd love to hear any experiences from
