@@ -20,6 +20,10 @@ jump straight to the source at [github.com/technoweenie/weatherhue](https://gith
 
 ![](https://cloud.githubusercontent.com/assets/21/4112562/ccd554cc-322e-11e4-97a0-ab6b7b7bc65e.jpg)
 
+NOTE: This post has been updated to match the latest version of the weatherhue
+script.  You can still read the [original blog post](https://github.com/technoweenie/technoweenie.github.com/blob/b757555fd5c1c26a619cbd99ad3a67f48949fa50/_posts/2014/2014-9-1-weather-light.md)
+if you really want.
+
 ## Requirements
 
 Unfortunately, there's one hefty requirement: You need a Philips Hue light kit,
