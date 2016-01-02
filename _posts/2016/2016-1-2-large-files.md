@@ -167,4 +167,4 @@ or similar features with us at GitHub, [let me know](mailto:rick@github.com)!
 
 ![Izzy Kane, first human worthy of the Shiar Imperial Guard, boots up for the first time](/images/2016/smasher-4.png)
 
-<small>(images taken from Avengers Vol. 5, #1 and #4 by Marvel Comics)</small>
+<small>(images taken from Avengers Vol. 5, #1 and #5 by Marvel Comics)</small>
