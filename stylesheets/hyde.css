@@ -77,9 +77,6 @@ p {
 ul, ol {
   margin-bottom: 15px;
 }
-li {
-  color: #888580;
-}
 
 hr {
   position: relative;
@@ -128,6 +125,7 @@ pre {
   word-break: break-all;
   word-wrap: break-word;
   background-color: #eee;
+  overflow: auto;
 }
 pre code {
   padding: 0;

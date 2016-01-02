@@ -3,3 +3,12 @@
     font-size: 24px;
   }
 }
+
+.img {
+  width: 100%;
+  text-align: center;
+}
+
+.img img {
+  display: inline;
+}

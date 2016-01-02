@@ -1,5 +1,3 @@
-markdown: rdiscount
-pygments: true
 port: 4000
 paginate:    15
 permalink: "/:year/:i_month/:i_day/:title"
