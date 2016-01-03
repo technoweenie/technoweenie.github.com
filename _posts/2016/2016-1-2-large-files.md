@@ -118,7 +118,7 @@ observations.
 We announced the Git LFS open source project at the Git Merge conference in
 April 2015. Pitching a tool that challenges Git's decentralized model to a room
 full of Git enthusiasts and experts was intimidating. Overall, it went pretty
-well. o one threw tomatoes or called me names.
+well. No one threw tomatoes or called me names.
 
 Coincidentally, John Garcia from Atlassian announced Git LOB, _their_ solution
 for large files in Git, immediately after my presentation. The core ideas behind
