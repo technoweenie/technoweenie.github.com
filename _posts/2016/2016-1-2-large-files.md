@@ -141,7 +141,7 @@ and duplicating even more work. What really impressed me was his willingness to
 jump in, on a competitor's site especially, and make major improvements to Git
 LFS.
 
-The project also saw contributions from Andy Neff and Stephen Gelm, who focused
+The project also saw contributions from Andy Neff and Stephen Gelman, who focused
 on packaging Git LFS for Linux. They started with scripts to build packages for
 their respective distros, which evolved into internal tools for building and
 testing Linux packages for release on my Macbook Pro.
